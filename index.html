@@ -1,81 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=640,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no">
-    <meta name="format-detection" content="telephone=yes"/>
+    <meta http-equiv="Content-Type" content="text/html;">
+    <meta name="viewport" content="width=750,user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="x5-fullscreen" content="true">
     <meta name="x5-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
     <meta name="screen-orientation" content="portrait">
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <title>Title</title>
+    <title>星小家</title>
+    <link type="text/css" rel="stylesheet" href="css/swiper.min.css">
     <style type="text/css">
-    body,html,ul,li,h1,h5,a,p,span,div{
-        margin: 0px;
-        padding: 0px;
-    }
-    ul,li{
-        list-style: none;
-    }
-    .wrap{
-        position: relative;
-        margin:40px;
+        *{ margin: 0; padding:0;}
+        html,body{
+            width: 750px;
+            height: 1204px;
+        }
+        .index1, .content{
+            width: 750px;
+            height: 1204px;
+            position: relative;
+            background: #cef8f7;
+        }
+        .content{
+        }
+        .btn-begin{
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            left: 0;
+            margin: auto;
+            text-align: center
+        }
+        .btn-begin img{margin: 0 auto}
 
-        height: 400px;
-        background-color: #fff;
-        box-shadow: 0px 0px 1px 1px #eee;
-    }
-    .imgWrap,
-    .photoWrap{
-        width: 100px;
-        height: 380px;
-        float: left;
-        border: 1px solid #ccc;
-        margin:10px 40px 10px 40px;
-        text-align: center;
-    }
-    .imgWrap img{
-        width: 60px;
-        height: 100px;
-    }
-    .photoWrap img{
-        width: 90px;
-        height: 140px;
-    }
-    .photoWrap_canvas{
-        position: absolute;
-        /*opacity: 0.4;*/
-        width: 300px;
-        left: 365px;
-        height: 400px;
-        /*background-color: red;*/
-    }
+        .photoFrame{
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            z-index: 2;
+        }
+        li{
+            display: block;
+        }
+        .photoFrame li img{
+            display: none;
+        }
+        .photoFrame li img.active{
+            display: block;
+        }
+        .flexBox{
+            position: absolute;
+            z-index: 3;
+            top: 750px;
+            width: 750px;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content:space-around;
+        }
+        .btn-2{
+            text-align: center;
+            position: relative;
+        }
+        #inputImg{
+            position: absolute;
+            width:300px;
+            height: 100px;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        .swiper-button-prev{
+            background: transparent url("images/prev.png");
+            width: 86px;
+            height: 181px;
+            top:35%;
+        }
+        .swiper-button-next{
+            background: transparent url("images/next.png");
+            width: 86px;
+            height: 181px;
+            top:35%;
+        }
+        .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled{
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
-
-
-<div class="wrap">
-    <div class="photoWrap_canvas" id="photoWrap_canvas" >
-
-    </div>
-    <canvas id="myCanvas" width="300" height="400"  style="background-color:#ccc"></canvas>
-    <div class="photoWrap" id="photoWrap">
-        <ul>
-            <!--相框-->
-            <li><img  src="images/3.png" alt=""></li>
-            <li><img  src="images/5.png" alt=""></li>
-        </ul>
-    </div>
-    <div>
-        <input id="inputImg" type="file" accept="image/*"/>
-        <button id="btnOk">完成</button>
+<div class="index1" style="display: block">
+    <img src="images/loading.jpg" style="display: block;width: 750px;height: 1204px;">
+    <div class="btn-begin">
+        <img src="images/begin.png" id="btn-1">
     </div>
 </div>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="content" id="content" style="display: none">
+    <canvas id="myCanvas" width="750px" height="1200px"  style="background-color:#ccc"></canvas>
+    <div class="photoFrame" id="photoFrame">
+        <!--相框-->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide stop-swiping">
+                    <img  src="images/1.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img  src="images/2.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img  src="images/3.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img  src="images/4.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img src="images/5.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img src="images/6.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img src="images/7.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img src="images/8.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img src="images/9.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img src="images/10.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img src="images/11.png">
+                </div>
+                <div class="swiper-slide stop-swiping">
+                    <img src="images/12.png">
+                </div>
+            </div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+        <div  class="flexBox">
+            <div class="btn-2">
+                <img src="images/upload.png">
+                <input id="inputImg" type="file" accept="image/*"/>
+            </div>
+            <div class="btn-2">
+                <img src="images/complete.png" id="btnOk">
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script src="js/swiper.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+
+    $('#btn-1').on('click',function () {
+        $('.index1').css('display','none');
+        $('.content').css('display','block');
+        /*初始化轮播*/
+        var swiper = new Swiper('.swiper-container', {
+            loop: false,
+            spaceBetween: 0,
+            effect : 'fade',
+            fadeEffect: {
+                crossFade: false
+            },
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            disabledClass: 'my-button-disabled',
+            noSwiping: true,
+            noSwipingClass : 'stop-swiping'
+        });
+    });
     $("#inputImg").on('click',function () {
         var inputObj = $(this).get(0);
         inputObj.addEventListener('change',readFile,false);
@@ -94,19 +208,118 @@
             drawToCanvas(this.result);
         }
     }
+
+    var canvas = document.querySelector('#myCanvas');
+    var ctx = canvas.getContext('2d');
     function drawToCanvas(imgData){
-        var cvs = document.querySelector('#myCanvas');
-        cvs.width=300;
-        cvs.height=400;
-        var ctx = cvs.getContext('2d');
+
         var img = new Image;
         img.src = imgData;
-        img.onload = function(){//必须onload之后再画
-            ctx.drawImage(img,0,0,300,400);
-            strDataURI = cvs.toDataURL();//获取canvas base64数据
-        }
+        // base64地址图片加载完毕后
+        img.onload = function () {
+            // 图片原始尺寸
+            var originWidth = this.width;
+            var originHeight = this.height;
+            // 最大尺寸限制
+            var maxWidth = 750, maxHeight = 1200;
+            // 目标尺寸
+            var targetWidth = originWidth, targetHeight = originHeight;
+            // 图片尺寸超过400x400的限制
+            if (originWidth > maxWidth || originHeight > maxHeight) {
+                if (originWidth / originHeight > maxWidth / maxHeight) {
+                    // 更宽，按照宽度限定尺寸
+                    targetWidth = maxWidth;
+                    targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+                } else {
+                    targetHeight = maxHeight;
+                    targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+                }
+            }
+
+            // canvas对图片进行缩放
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+            ctx.drawImage(img,0,0,targetWidth, targetHeight);
+            strDataURI = canvas.toDataURL();//获取canvas base64数据
+        };
     }
 
+    // 移动相册的动作
+    var hasTouch = 'ontouchstart' in window;
+    // console.log(window);
+    var STA_EN = hasTouch ? "touchstart" : "mousedown",
+        MV_EV = hasTouch ? "touchmove":"mousemove",
+        END_EV = hasTouch ? "touchend" : "mouseup",
+        END_Cancel = hasTouch ? "touchcancel" : "mouseout";
+
+    var content = document.getElementById('content');
+    content.addEventListener(STA_EN,start,false);
+    content.addEventListener(MV_EV,move,false);
+    content.addEventListener(END_EV,end,false);
+    content.addEventListener(END_EV,end,false);
+
+    var bStart = 0;
+
+    var bginX,bginY,startX = 0,startY = 0;
+
+    var offsetX_ctx = 0,offsetY_ctx = 0;
+
+    function start(ev){
+        // console.log("32")
+        ev.preventDefault();
+        bStart = 1;
+
+        var poi = getEvtLocation(ev);
+
+        // console.log(poi.x,poi.y);
+        bginX = poi.x;
+        bginY = poi.y;
+    }
+
+    function move(ev){
+        ev.preventDefault();
+
+        if(bStart === 0)return;
+
+        var poi = getEvtLocation(ev);
+
+        var offsetX = poi.x - bginX,
+            offsetY = poi.y - bginY;
+
+
+        ctx.translate(offsetX,offsetY);
+        //onDraw();
+
+        bginX = poi.x;
+        bginY = poi.y;
+    }
+    function end (ev) {
+        // body...
+        ev.preventDefault();
+
+        bStart = 0;
+    }
+    var util = {
+        isNull:function(str){return str == null || str.length == 0 }
+    };
+    function getEvtLocation(ev){
+        if(util.isNull(ev)) return;
+        // var touch = ev.touches[0];
+
+        return{
+            x : ev.offsetX,
+            y : ev.offsetY
+        }
+    }
+    function onDraw(){
+        var ctxW = canvas.width,
+            ctxH = canvas.height;
+        // 这是清除图片因为平移而造成的痕迹，-ctxw是图片平移的反方向的位置，2*ctxW，是清除的面积
+        ctx.clearRect(- ctxW,-ctxH, 2 * ctxW, 2 * ctxH);
+
+        // -imgW/2 是为了让图片显示的回复正常，因为上面显示的时候做了旋转
+        ctx.drawImage(img,-imgW / 2, -imgH / 2,300,400);
+    }
 </script>
 </body>
 </html>
